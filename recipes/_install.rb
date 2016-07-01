@@ -35,18 +35,18 @@ user sentry_user do
 end
 
 directory node["sentry"]["install_dir"] do
-  owner sentry_user
+  user sentry_user
   group sentry_group
 end
 
 directory node["sentry"]["filestore_dir"] do
-  owner sentry_user
+  user sentry_user
   group sentry_group
 end
 
 # Create a virtualenv for sentry
 python_virtualenv node["sentry"]["install_dir"] do
-  owner sentry_user
+  user sentry_user
   group sentry_group
   action :create
 end

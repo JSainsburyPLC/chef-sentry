@@ -8,6 +8,6 @@ version          "0.2.2"
 
 supports "ubuntu"
 
-depends "python"
+depends 'poise-python', '~> 1.4.0'
 depends "runit", ">= 1.1.6"
 suggests "redisio"

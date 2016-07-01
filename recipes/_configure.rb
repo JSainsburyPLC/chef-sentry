@@ -24,7 +24,7 @@ sentry_group = node["sentry"]["group"]
 
 # Prepare envdir for sentry configs
 directory node["sentry"]["env_d_path"] do
-  owner "root"
+  user "root"
   group sentry_group
   mode "750"
   action :create
@@ -52,7 +52,7 @@ Chef::Application.fatal!(
 ) unless sentry_config
 
 directory sentry_env_path do
-  owner "root"
+  user "root"
   group sentry_group
   mode "750"
   action :create
@@ -61,7 +61,7 @@ end
 (sentry_config["additional_env_vars"] || {}).each do |key, value|
 
   file "#{sentry_env_path}/#{key.to_s.upcase}" do
-    owner "root"
+    user "root"
     group sentry_group
     mode "750"
     action :create
@@ -72,7 +72,7 @@ end
 
 # Prepare sentry config directory
 directory node["sentry"]["config_dir"] do
-  owner sentry_user
+  user sentry_user
   group sentry_group
   mode "750"
   action :create
@@ -80,7 +80,7 @@ end
 
 template node["sentry"]["config_file_path"] do
   source "sentry.conf.py.erb"
-  owner sentry_user
+  user sentry_user
   group sentry_group
   mode "750"
   variables({
@@ -152,7 +152,7 @@ end
 
 template initial_admin_json do
   source "initial_admin.json.erb"
-  owner sentry_user
+  user sentry_user
   group sentry_group
   mode  "0600"
   variables({
