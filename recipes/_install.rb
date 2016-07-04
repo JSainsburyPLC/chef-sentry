@@ -46,7 +46,7 @@ end
 
 # Create a virtualenv for sentry
 python_virtualenv node["sentry"]["install_dir"] do
-  owner sentry_user
+  user sentry_user
   group sentry_group
   action :create
 end
