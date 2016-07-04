@@ -46,7 +46,7 @@ end
 
 # Create a virtualenv for sentry
 python_virtualenv node["sentry"]["install_dir"] do
-  ower sentry_user
+  owner sentry_user
   group sentry_group
   action :create
 end
@@ -60,7 +60,7 @@ end
 python_pip node["sentry"]["pipname"] do
   virtualenv node["sentry"]["install_dir"]
   version node["sentry"]["version"]
-  user sentry_user
+  owner sentry_user
   group sentry_group
 end
 
@@ -71,7 +71,7 @@ node["sentry"]["database"]["pipdeps"].each do |dep|
   python_pip dep_name do
     virtualenv node["sentry"]["install_dir"]
     version dep_version
-    user sentry_user
+    owner sentry_user
     group sentry_group
   end
 end
@@ -83,7 +83,7 @@ node["sentry"]["plugins"].each do |plugin|
   python_pip plugin_name do
     virtualenv node["sentry"]["install_dir"]
     version plugin_version
-    user sentry_user
+    owner sentry_user
     group sentry_group
   end
 end
