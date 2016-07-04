@@ -60,7 +60,7 @@ end
 python_pip node["sentry"]["pipname"] do
   virtualenv node["sentry"]["install_dir"]
   version node["sentry"]["version"]
-  owner sentry_user
+  user sentry_user
   group sentry_group
 end
 
@@ -71,7 +71,7 @@ node["sentry"]["database"]["pipdeps"].each do |dep|
   python_pip dep_name do
     virtualenv node["sentry"]["install_dir"]
     version dep_version
-    owner sentry_user
+    user sentry_user
     group sentry_group
   end
 end
@@ -83,7 +83,7 @@ node["sentry"]["plugins"].each do |plugin|
   python_pip plugin_name do
     virtualenv node["sentry"]["install_dir"]
     version plugin_version
-    owner sentry_user
+    user sentry_user
     group sentry_group
   end
 end
